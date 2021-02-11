@@ -11,7 +11,7 @@ from skimage.transform import resize
 
 #os.chdir(r'C:\Users\straw\Desktop\AIS\ProjectPool 2\Classification-images')
 
-def resize_images(path, pklname, include, width=150, height=None):
+def resize_data(path, pklname, include, width=150, height=None):
     """
     load images from path, resize them and write them as arrays to a dictionary,
     together with labels and metadata. The dictionary is written to a pickle file
@@ -59,7 +59,7 @@ width = 80
 include = {'ChickenHead', 'BearHead', 'ElephantHead', 
            'EagleHead', 'DeerHead', 'MonkeyHead', 'PandaHead'}
 
-resize_images(path=data_path, pklname=pklname, include=include, width=width)
+resize_data(path=data_path, pklname=pklname, include=include, width=width)
 
 
 

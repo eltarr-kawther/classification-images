@@ -6,8 +6,14 @@ Created on Tue Feb  9 14:12:54 2021
 """
 import os
 import joblib
+from collections import Counter
+
 from skimage.io import imread
 from skimage.transform import resize
+
+import numpy as np
+
+import matplotlib.pyplot as plt
 
 #os.chdir(r'C:\Users\straw\Desktop\AIS\ProjectPool 2\Classification-images')
 
@@ -49,6 +55,7 @@ def resize_data(path, pklname, include, width=150, height=None):
                     data['filename'].append(file)
                     data['data'].append(im)
         joblib.dump(data, pklname)
+    return data
 
 data_path = r'C:\Users\straw\Desktop\AIS\ProjectPool 2\Classification-images\AnimalFace'
 os.listdir(data_path)
@@ -62,5 +69,33 @@ include = {'ChickenHead', 'BearHead', 'ElephantHead',
 resize_data(path=data_path, pklname=pklname, include=include, width=width)
 
 
+data = joblib.load(f'Output/{pklname}_{width}x{width}px.pkl')
+ 
+print('number of samples: ', len(data['data']))
+print('keys: ', list(data.keys()))
+print('description: ', data['description'])
+print('image shape: ', data['data'][0].shape)
+print('labels:', np.unique(data['label']))
+ 
+Counter(data['label'])
 
+# use np.unique to get all unique values in the list of labels
+labels = np.unique(data['label'])
+ 
+# set up the matplotlib figure and axes, based on the number of labels
+fig, axes = plt.subplots(1, len(labels))
+fig.set_size_inches(15,4)
+fig.tight_layout()
+ 
+# make a plot for every label (equipment) type. The index method returns the 
+# index of the first item corresponding to its search string, label in this case
+for ax, label in zip(axes, labels):
+    idx = data['label'].index(label)
+     
+    ax.imshow(data['data'][idx])
+    ax.axis('off')
+    ax.set_title(label)
+
+X = np.array(data['data'])
+y = np.array(data['label'])
 

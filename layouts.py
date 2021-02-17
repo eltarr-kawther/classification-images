@@ -5,11 +5,13 @@ Created on Wed Feb 17 15:07:33 2021
 @author: straw
 """
 import dash_core_components as dcc
+import dash_bootstrap_components as dbc
 import dash_html_components as html
 
 layout1 = html.Div(children=[
-    html.H1('Welcome'),
-    dcc.Link('Go to App 2', href='/apps/app2')
+    html.Div(className="welcome-page-title", children=[html.P('Bienvenue sur l\'Arche de Noé')]),
+    html.Br(),
+    dbc.Button(dcc.Link('Embarquer', href='/app2'), color="warning", className="btn btn-primary")
     ], style={
   'verticalAlign':'middle',
   'textAlign': 'center',
@@ -33,5 +35,5 @@ layout2 = html.Div([
         ]
     ),
     html.Div(id='app-2-display-value'),
-    dcc.Link('Go to App 1', href='/')
+    dcc.Link('Go back', href='/')
 ])

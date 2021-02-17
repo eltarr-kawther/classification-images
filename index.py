@@ -23,7 +23,7 @@ app.layout = html.Div([
 def display_page(pathname):
     if pathname == '/':
          return layout1
-    elif pathname == '/apps/app2':
+    elif pathname == '/app2':
          return layout2
     else:
         return '404'

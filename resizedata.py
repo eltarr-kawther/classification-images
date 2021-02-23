@@ -40,7 +40,7 @@ def resize_data(path, pklname, include, width=150, height=None):
         if subdir in include:
             current_path = os.path.join(path, subdir)
             for file in os.listdir(current_path):
-                if file[-4:] in {'.jpg', '.png', 'jpeg'}:
+                if file[-3:] in {'jpg', 'png'}:
                     im = imread(os.path.join(current_path, file))
                     im = resize(im, (width, height)) #[:,:,::-1]
                     data['label'].append(subdir[:-4])

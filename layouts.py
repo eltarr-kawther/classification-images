@@ -32,7 +32,7 @@ layout1 = html.Div(children=[
 })
 
 layout2 = html.Div([
-    html.H1('App 2'),
+    html.H1('Face Detection'),
     dcc.Upload(
         id='upload-data',
         children=html.Div([
@@ -54,7 +54,8 @@ layout2 = html.Div([
         multiple=True
     ),
     html.Div(id='output-data-upload'),
-    dcc.Link('Go back', href='/')
+    dbc.Button(dcc.Link('Page d\'accueil', href='/'), color="warning", className="btn btn-primary")
+
 ])
 
 def parse_contents(contents, filename, date):

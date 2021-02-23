@@ -6,6 +6,7 @@ Created on Wed Feb 17 15:05:50 2021
 """
 from dash.dependencies import Input, Output, State
 from app import app
+from layouts import parse_contents
 
 @app.callback(
     Output('app-2-display-value', 'children'),

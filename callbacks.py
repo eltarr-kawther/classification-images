@@ -9,6 +9,11 @@ from dash.dependencies import Input, Output, State
 from app import app
 from layouts import save_file
 import joblib
+from skimage.io import imread
+from skimage.transform import resize
+from skimage.feature import hog
+from sklearn.preprocessing import Normalizer
+
 
 @app.callback(
     Output('app-2-display-value', 'children'),
@@ -20,9 +25,9 @@ def display_value(value):
               Input('upload-data', 'contents'),
               State('upload-data', 'filename'))
 def update_output(list_of_contents, list_of_names):
+    directory = './Output/temp'
     if list_of_contents is not None and list_of_names is not None :
         for content, name in zip(list_of_contents, list_of_names):
-            directory = './Output/temp'
             files_in_dir = os.listdir(directory)
             exts = {".jpg", ".png", ".gif"}
             filtered_files = [file for file in files_in_dir if any(file.endswith(s) for s in exts)]
@@ -31,4 +36,18 @@ def update_output(list_of_contents, list_of_names):
                     path_to_file = os.path.join(directory,img)
                     os.remove(path_to_file)
             save_file(name, content)
-    #model = joblib.load()
+    
+    model = joblib.load('Output\models\hog_models.pkl')
+    width = 80
+    height = 80
+    images = []
+    for file in os.listdir(directory):
+        file = imread(os.path.join(directory, file), as_gray=True)
+        file = resize(file, (width, height))
+        images.append(file)
+    images.append(images[0])           
+    prediction = model.predict(images)
+    print(prediction[0])
+    return prediction[0]
+        
+    

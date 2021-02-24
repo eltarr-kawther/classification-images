@@ -74,7 +74,10 @@ layout2 = html.Div([
         # Allow multiple files to be uploaded
         multiple=True
     ),
-    html.Div(id='output-data-upload'),
+    html.Div(children=[
+        html.P(id='output-data-upload')],
+         style={'color': 'black'}),
+    
     dbc.Button(dcc.Link('Page d\'accueil', href='/'), color="warning", className="btn btn-primary")
 
 ])

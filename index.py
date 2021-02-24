@@ -13,6 +13,9 @@ from app import server
 from layouts import layout1, layout2
 import callbacks
 
+from rgb2graytransformer import RGB2GrayTransformer
+from hogtransformer import HogTransformer
+
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
     html.Div(id='page-content')

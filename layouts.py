@@ -4,6 +4,7 @@ Created on Wed Feb 17 15:07:33 2021
 
 @author: straw
 """
+import os
 import base64
 import datetime
 import io
@@ -78,39 +79,19 @@ layout2 = html.Div([
 
 ])
 
-def parse_contents(contents, filename, date):
-    content_type, content_string = contents.split(',')
-
-    decoded = base64.b64decode(content_string)
-    try:
-        if 'csv' in filename:
-            # Assume that the user uploaded a CSV file
-            df = pd.read_csv(
-                io.StringIO(decoded.decode('utf-8')))
-        elif 'xls' in filename:
-            # Assume that the user uploaded an excel file
-            df = pd.read_excel(io.BytesIO(decoded))
-    except Exception as e:
-        print(e)
-        return html.Div([
-            'There was an error processing this file.'
-        ])
-
+def parse_contents(contents, filename):
     return html.Div([
         html.H5(filename),
-        html.H6(datetime.datetime.fromtimestamp(date)),
-
-        dash_table.DataTable(
-            data=df.to_dict('records'),
-            columns=[{'name': i, 'id': i} for i in df.columns]
-        ),
-
-        html.Hr(),  # horizontal line
-
-        # For debugging, display the raw contents provided by the web browser
-        html.Div('Raw Content'),
-        html.Pre(contents[0:200] + '...', style={
-            'whiteSpace': 'pre-wrap',
-            'wordBreak': 'break-all'
-        })
+        html.Img(src=contents),
+        html.Hr()
     ])
+
+TEMP_DIR = r'C:\Users\straw\Desktop\AIS\ProjectPool 2\Classification-images\Output\temp'
+
+if not os.path.exists(TEMP_DIR):
+    os.makedirs(TEMP_DIR)
+
+def save_file(name, content):
+    data = content.encode("utf8").split(b";base64,")[1]
+    with open(os.path.join(TEMP_DIR, name), "wb") as file:
+        file.write(base64.decodebytes(data))

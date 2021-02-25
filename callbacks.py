@@ -14,11 +14,10 @@ from skimage.transform import resize
 from skimage.feature import hog
 from sklearn.preprocessing import Normalizer
 
-
-@app.callback(Output('output-data-upload', 'children'),
-              Input('upload-data', 'contents'),
-              State('upload-data', 'filename'))
-def update_output(list_of_contents, list_of_names):
+@app.callback(Output('output-prediction', 'children'),
+              Input('update-prediction', 'contents'),
+              State('update-prediction', 'filename'))
+def upload_pred(list_of_contents, list_of_names):
     directory = './Output/temp'
     if list_of_contents is not None and list_of_names is not None :
         for content, name in zip(list_of_contents, list_of_names):

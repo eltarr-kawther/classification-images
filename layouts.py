@@ -35,30 +35,22 @@ layout1 = html.Div(children=[
 layout2 = html.Div([
     dbc.NavbarSimple(
     children=[
-        dbc.NavItem(dbc.NavLink("Page 1", href="#")),
-        dbc.DropdownMenu(
-            children=[
-                dbc.DropdownMenuItem("More pages", header=True),
-                dbc.DropdownMenuItem("Page 2", href="#"),
-                dbc.DropdownMenuItem("Page 3", href="#"),
-            ],
-            nav=True,
-            in_navbar=True,
-            label="More",
-        ),
+        dbc.NavItem(dbc.NavLink("Accueil", href="/")),
+        dbc.NavItem(dbc.NavLink("Catalogue d'images", href="#")),
     ],
-    brand="NavbarSimple",
-    brand_href="#",
+    brand="L'Arche de Noé",
+    brand_href="/",
     color="primary",
-    dark=True
+    dark=False
     ),
-    
-    html.H1('Face Detection'),
+    html.Br(),
+    dbc.Jumbotron(children=[
+    html.H1('Détection d\'animaux'),
     dcc.Upload(
         id='upload-data',
         children=html.Div([
-            'Drag and Drop or ',
-            html.A('Select Files')
+            'glisser-déposer ou ',
+            html.A('sélectionner des fichiers')
         ]),
         style={
             'width': '100%',
@@ -74,12 +66,13 @@ layout2 = html.Div([
         # Allow multiple files to be uploaded
         multiple=True
     ),
+    html.Br(),
     html.Div(children=[
+        html.H5('Le modèle a détecté l\'animal suivant : '),
         html.P(id='output-data-upload')],
          style={'color': 'black'}),
     
-    dbc.Button(dcc.Link('Page d\'accueil', href='/'), color="warning", className="btn btn-primary")
-
+    ])
 ])
 
 def parse_contents(contents, filename):

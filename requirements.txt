@@ -19,6 +19,7 @@ iniconfig==1.1.1
 itsdangerous==1.1.0
 Jinja2==2.11.2
 jupyter-tabnine==1.1.0
+joblib==1.0.1
 MarkupSafe==1.1.1
 numpy==1.19.5
 packaging==20.8

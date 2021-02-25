@@ -4,3 +4,4 @@ temp.py
 /.ipynb_checkpoints
 /Data
 /__pycache__
+!/Output/models/hog_models.pkl

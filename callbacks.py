@@ -15,12 +15,6 @@ from skimage.feature import hog
 from sklearn.preprocessing import Normalizer
 
 
-@app.callback(
-    Output('app-2-display-value', 'children'),
-    Input('app-2-dropdown', 'value'))
-def display_value(value):
-    return 'You have selected "{}"'.format(value)
-
 @app.callback(Output('output-data-upload', 'children'),
               Input('upload-data', 'contents'),
               State('upload-data', 'filename'))

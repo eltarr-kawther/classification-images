@@ -41,11 +41,11 @@ layout2 = html.Div([
     brand="L'Arche de Noé",
     brand_href="/",
     color="primary",
-    dark=False
+    dark=True
     ),
     html.Br(),
+    html.H1('Détection d\'animaux', className="display-4"),
     dbc.Jumbotron(children=[
-    html.H1('Détection d\'animaux'),
     dcc.Upload(
         id='upload-data',
         children=html.Div([
@@ -69,8 +69,7 @@ layout2 = html.Div([
     html.Br(),
     html.Div(children=[
         html.H5('Le modèle a détecté l\'animal suivant : '),
-        html.P(id='output-data-upload')],
-         style={'color': 'black'}),
+        html.H6(id='output-data-upload', className="my-4")]),
     
     ])
 ])

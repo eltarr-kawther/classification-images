@@ -7,19 +7,28 @@ Created on Wed Feb 17 15:05:50 2021
 import os
 from dash.dependencies import Input, Output, State
 from app import app
-from layouts import save_file
+from layouts import parse_contents, save_file
 import joblib
 from skimage.io import imread
 from skimage.transform import resize
-from skimage.feature import hog
-from sklearn.preprocessing import Normalizer
+
+
+@app.callback(Output('output-image-upload', 'children'),
+              Input('upload-image', 'contents'),
+              State('upload-image', 'filename'))
+def update_output(list_of_contents, list_of_names):
+    if list_of_contents is not None and list_of_names is not None:
+        children = [
+            parse_contents(c, n) for c, n in
+            zip(list_of_contents, list_of_names)]
+        return children
 
 @app.callback(Output('output-prediction', 'children'),
-              Input('update-prediction', 'contents'),
-              State('update-prediction', 'filename'))
-def upload_pred(list_of_contents, list_of_names):
+              Input('upload-image', 'contents'),
+              State('upload-image', 'filename'))
+def update_prediction(list_of_contents, list_of_names):
     directory = './Output/temp'
-    if list_of_contents is not None and list_of_names is not None :
+    if list_of_contents is not None and list_of_names is not None:
         for content, name in zip(list_of_contents, list_of_names):
             files_in_dir = os.listdir(directory)
             exts = {".jpg", ".png", ".gif"}

@@ -47,7 +47,7 @@ layout2 = html.Div([
     html.H1('Détection d\'animaux', className="display-4"),
     dbc.Jumbotron(children=[
     dcc.Upload(
-        id='update-prediction',
+        id='upload-image',
         children=html.Div([
             'glisser-déposer ou ',
             html.A('sélectionner des fichiers')
@@ -66,6 +66,8 @@ layout2 = html.Div([
         # Allow multiple files to be uploaded
         multiple=True
     ),
+    html.Br(),
+    html.Div(id='output-image-upload'),
     html.Br(),
     html.Div(children=[
         html.H5('Le modèle a détecté l\'animal suivant : '),

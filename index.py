@@ -5,6 +5,7 @@ Created on Thu Feb  4 14:23:16 2021
 @author: straw
 """
 import dash_core_components as dcc
+import dash_bootstrap_components as dbc
 import dash_html_components as html
 from dash.dependencies import Input, Output
 
@@ -29,8 +30,14 @@ def display_page(pathname):
     elif pathname == '/app2':
          return layout2
     else:
-        return '404'
+        return dbc.Jumbotron(
+            [
+                html.H1("404: Not found", className="text-danger"),
+                html.Hr(),
+                html.P(f"The pathname {pathname} was not recognised...")
+                ]
+            )
 
 if __name__ == '__main__':
-    app.run_server(debug=False)
+    app.run_server(debug=True)
 

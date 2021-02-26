@@ -29,6 +29,7 @@ plotly==4.14.3
 pluggy==0.13.1
 pprintpp==0.4.0
 py==1.10.0
+pickle5==0.0.11
 pycountry==20.7.3
 pycountry-convert==0.7.2
 pyparsing==2.4.7

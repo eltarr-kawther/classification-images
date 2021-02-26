@@ -39,7 +39,7 @@ def update_prediction(list_of_contents, list_of_names):
                     os.remove(path_to_file)
             save_file(name, content)
     
-    model = joblib.load('Output\models\hog_models.pkl')
+    model = joblib.load(r'output\models\hog_models.pkl')
     width = 80
     height = 80
     images = []

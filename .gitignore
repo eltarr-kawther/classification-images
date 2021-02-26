@@ -1,7 +1,6 @@
 Classification d'Images.pdf
 temp.py
-Output
+/Output
 /.ipynb_checkpoints
 /Data
 /__pycache__
-!*/Output/models/hog_models.pkl

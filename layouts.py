@@ -12,6 +12,7 @@ import dash_core_components as dcc
 import dash_bootstrap_components as dbc
 import dash_html_components as html
 import dash_table
+from pathlib import Path
 
 import pandas as pd
 
@@ -83,10 +84,8 @@ def parse_contents(contents, filename):
         html.Hr()
     ])
 
-TEMP_DIR = r'C:\Users\straw\Desktop\AIS\ProjectPool 2\Classification-images\Output\temp'
-
-if not os.path.exists(TEMP_DIR):
-    os.makedirs(TEMP_DIR)
+TEMP_DIR = Path('Output\Mimoun')
+TEMP_DIR.mkdir(exist_ok=True, parents=True)
 
 def save_file(name, content):
     data = content.encode("utf8").split(b";base64,")[1]

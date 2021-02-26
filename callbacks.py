@@ -27,7 +27,7 @@ def update_output(list_of_contents, list_of_names):
               Input('upload-image', 'contents'),
               State('upload-image', 'filename'))
 def update_prediction(list_of_contents, list_of_names):
-    directory = './Output/temp'
+    directory = 'Output\Mimoun'
     if list_of_contents is not None and list_of_names is not None:
         for content, name in zip(list_of_contents, list_of_names):
             files_in_dir = os.listdir(directory)

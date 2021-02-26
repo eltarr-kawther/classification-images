@@ -16,11 +16,11 @@ import callbacks
 
 from rgb2graytransformer import RGB2GrayTransformer
 from hogtransformer import HogTransformer
-from sklearn.pipeline import Pipeline
-from sklearn import svm
-from sklearn.linear_model import SGDClassifier
-from sklearn.naive_bayes import GaussianNB
-from sklearn.preprocessing import StandardScaler, Normalizer, MinMaxScaler
+#from sklearn.pipeline import Pipeline
+# from sklearn import svm
+# from sklearn.linear_model import SGDClassifier
+# from sklearn.naive_bayes import GaussianNB
+# from sklearn.preprocessing import StandardScaler, Normalizer, MinMaxScaler
 
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
@@ -44,5 +44,5 @@ def display_page(pathname):
             )
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=False)
 

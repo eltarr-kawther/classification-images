@@ -52,7 +52,7 @@ def update_prediction(list_of_contents, list_of_names):
         #file_prepared = best_estimator['scalify'].transform(file_hog)
         images.append(file)
     images.append(images[0])  
-    model = joblib.load('output/models/hog_models.pkl')         
+    model = joblib.load('Output/models/best_model.pkl')         
     prediction = model.predict(images)
     return prediction[0]
         

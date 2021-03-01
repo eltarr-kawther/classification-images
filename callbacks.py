@@ -12,6 +12,7 @@ import joblib
 from skimage.io import imread
 from skimage.transform import resize
 
+from transformers import RGB2GrayTransformer, HogTransformer
 
 @app.callback(Output('output-image-upload', 'children'),
               Input('upload-image', 'contents'),
@@ -51,7 +52,7 @@ def update_prediction(list_of_contents, list_of_names):
         #file_prepared = best_estimator['scalify'].transform(file_hog)
         images.append(file)
     images.append(images[0])  
-    model = joblib.load('Output/models/best_model.pkl')         
+    model = joblib.load('output/models/hog_models.pkl')         
     prediction = model.predict(images)
     return prediction[0]
         

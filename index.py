@@ -13,7 +13,7 @@ from app import app
 from app import server
 from layouts import layout1, layout2
 import callbacks
-
+import joblib
 import skimage
 import numpy as np
 from sklearn.base import BaseEstimator, TransformerMixin
@@ -43,5 +43,6 @@ def display_page(pathname):
 
 if __name__ == '__main__':
     from transformers import RGB2GrayTransformer, HogTransformer
+    model = joblib.load('output/models/hog_models.pkl')
     app.run_server(debug=False)
 

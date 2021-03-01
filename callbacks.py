@@ -12,7 +12,6 @@ import joblib
 from skimage.io import imread
 from skimage.transform import resize
 
-from transformers import RGB2GrayTransformer, HogTransformer
 
 @app.callback(Output('output-image-upload', 'children'),
               Input('upload-image', 'contents'),

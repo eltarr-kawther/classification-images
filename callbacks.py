@@ -39,17 +39,20 @@ def update_prediction(list_of_contents, list_of_names):
                     os.remove(path_to_file)
             save_file(name, content)
     
-    model = joblib.load('output/models/hog_models.pkl')
+    #best_estimator = joblib.load('Output/models/best_model.pkl')
+    model = joblib.load('Output/models/hog_models.pkl')
     width = 80
     height = 80
     images = []
     for file in os.listdir(directory):
-        file = imread(os.path.join(directory, file), as_gray=True)
+        file = imread(os.path.join(directory, file), as_gray=False)
         file = resize(file, (width, height))
+        #file_gray = best_estimator['grayify'].transform(file)
+        #file_hog = best_estimator['hogify'].transform(file_gray)
+        #file_prepared = best_estimator['scalify'].transform(file_hog)
         images.append(file)
     images.append(images[0])           
     prediction = model.predict(images)
-    print(prediction[0])
     return prediction[0]
         
     

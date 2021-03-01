@@ -40,7 +40,7 @@ def update_prediction(list_of_contents, list_of_names):
             save_file(name, content)
     
     #best_estimator = joblib.load('Output/models/best_model.pkl')
-    model = joblib.load('Output/models/hog_models.pkl')
+    model = joblib.load('output/models/hog_models.pkl')
     width = 80
     height = 80
     images = []

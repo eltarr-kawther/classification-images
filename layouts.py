@@ -6,15 +6,10 @@ Created on Wed Feb 17 15:07:33 2021
 """
 import os
 import base64
-import datetime
-import io
 import dash_core_components as dcc
 import dash_bootstrap_components as dbc
 import dash_html_components as html
-import dash_table
 from pathlib import Path
-
-import pandas as pd
 
 
 layout1 = html.Div(children=[

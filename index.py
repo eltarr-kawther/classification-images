@@ -19,8 +19,7 @@ import numpy as np
 from sklearn.base import BaseEstimator, TransformerMixin
 from skimage.feature import hog
 
-from rgb2graytransformer import RGB2GrayTransformer
-from hogtransformer import HogTransformer
+from transformers import RGB2GrayTransformer, HogTransformer
 
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
@@ -44,7 +43,5 @@ def display_page(pathname):
             )
 
 if __name__ == '__main__':
-    from rgb2graytransformer import RGB2GrayTransformer
-    from hogtransformer import HogTransformer
     app.run_server(debug=False)
 

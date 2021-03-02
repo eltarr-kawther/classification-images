@@ -100,6 +100,22 @@ layout3 = html.Div([
     dark=True
     ),
     html.Br(),
+    dbc.Jumbotron(children=[
     html.H1('Catalogue d\'images', className="display-4"),
+    html.Br(),
+    html.Div([
+    dcc.Textarea(id='textarea-state-example',
+                 maxLength = 10,
+                 minLength = 3,
+                 style={'width': '20%', 'height': 60},
+    ),
+    html.Br(),
+    dbc.Button('search', id='textarea-state-example-button', n_clicks=0, color="warning", className="btn btn-primary"),
+    html.H5(id='textarea-state-example-output', className="my-4", style={'whiteSpace': 'pre-line'})
     ])
+    ])
+    ])
+
+
+
 

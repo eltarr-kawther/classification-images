@@ -17,7 +17,7 @@ from transformers import RGB2GrayTransformer, HogTransformer
 @app.callback(Output('output-image-upload', 'children'),
               Input('upload-image', 'contents'),
               State('upload-image', 'filename'))
-def update_output(list_of_contents, list_of_names):
+def update_picture(list_of_contents, list_of_names):
     if list_of_contents is not None and list_of_names is not None:
         children = [
             parse_contents(c, n) for c, n in
@@ -35,7 +35,7 @@ def update_prediction(list_of_contents, list_of_names):
             exts = {".jpg", ".png", ".gif"}
             filtered_files = [file for file in files_in_dir if any(file.endswith(s) for s in exts)]
             for img in filtered_files:
-                if len(filtered_files) >=1:
+                if len(filtered_files) >= 1:
                     path_to_file = os.path.join(directory,img)
                     os.remove(path_to_file)
             save_file(name, content)
@@ -51,5 +51,20 @@ def update_prediction(list_of_contents, list_of_names):
     model = joblib.load('output/models/hog_models.pkl')         
     prediction = model.predict(images)
     return prediction[0]
-        
-    
+
+@app.callback(
+    Output('textarea-state-example-output', 'children'),
+    Input('textarea-state-example-button', 'n_clicks'),
+    State('textarea-state-example', 'value'))
+def update_query(n_clicks, value):
+    if n_clicks > 0:
+        return 'You have entered: \n{}'.format(value)
+
+
+
+
+
+
+
+
+

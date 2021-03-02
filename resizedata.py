@@ -4,7 +4,6 @@ Created on Tue Feb 23 15:56:12 2021
 
 @author: straw
 """
-
 import os
 from skimage.io import imread
 from skimage.transform import resize
@@ -41,10 +40,9 @@ def resize_data(path, pklname, include, width=150, height=None):
             current_path = os.path.join(path, subdir)
             for file in os.listdir(current_path):
                 if file[-3:] in {'jpg', 'png'}:
-                    im = imread(os.path.join(current_path, file))
-                    im = resize(im, (width, height)) #[:,:,::-1]
+                    im = imread(os.path.join(current_path, file), as_gray=False)
+                    im = resize(im, (width, height))
                     data['label'].append(subdir[:-4])
                     data['filename'].append(file)
                     data['data'].append(im)
         joblib.dump(data, pklname)
-    return data

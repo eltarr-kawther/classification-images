@@ -11,7 +11,7 @@ from dash.dependencies import Input, Output
 
 from app import app
 from app import server
-from layouts import layout1, layout2
+from layouts import layout1, layout2, layout3
 import callbacks
 
 from transformers import RGB2GrayTransformer, HogTransformer
@@ -29,6 +29,8 @@ def display_page(pathname):
          return layout1
     elif pathname == '/app2':
          return layout2
+    elif pathname == '/app3':
+         return layout3
     else:
         return dbc.Jumbotron(
             [

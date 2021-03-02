@@ -15,7 +15,8 @@ from pathlib import Path
 layout1 = html.Div(children=[
     html.Div(className="welcome-page-title", children=[html.P('Bienvenue sur l\'Arche de Noé')]),
     html.Br(),
-    dbc.Button(dcc.Link('Embarquer', href='/app2'), color="warning", className="btn btn-primary")
+    dbc.Button(dcc.Link('Labellisation', href='/app2'), color="warning", className="btn btn-primary"),
+    dbc.Button(dcc.Link('Catalogue', href='/app3'), color="warning", className="btn btn-primary")
     ], style={
   'verticalAlign':'middle',
   'textAlign': 'center',
@@ -32,7 +33,7 @@ layout2 = html.Div([
     dbc.NavbarSimple(
     children=[
         dbc.NavItem(dbc.NavLink("Accueil", href="/")),
-        dbc.NavItem(dbc.NavLink("Catalogue d'images", href="#")),
+        dbc.NavItem(dbc.NavLink("Catalogue d'images", href="/app3")),
     ],
     brand="L'Arche de Noé",
     brand_href="/",
@@ -86,3 +87,19 @@ def save_file(name, content):
     data = content.encode("utf8").split(b";base64,")[1]
     with open(os.path.join(TEMP_DIR, name), "wb") as file:
         file.write(base64.decodebytes(data))
+
+layout3 = html.Div([
+    dbc.NavbarSimple(
+    children=[
+        dbc.NavItem(dbc.NavLink("Accueil", href="/")),
+        dbc.NavItem(dbc.NavLink("Labellisation d'images", href="/app2")),
+    ],
+    brand="L'Arche de Noé",
+    brand_href="/",
+    color="primary",
+    dark=True
+    ),
+    html.Br(),
+    html.H1('Catalogue d\'images', className="display-4"),
+    ])
+
